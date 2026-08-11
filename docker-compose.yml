@@ -3,12 +3,8 @@ services:
     build: .
     env_file: .env
     ports:
-      - "8000:8000"
+      - "127.0.0.1:${WEB_PORT:-8000}:8000"
     volumes:
-      - db_data:/app/db
-      - media_data:/app/media
+      - ./db_data:/app/db
+      - ./media_data:/app/media
     restart: unless-stopped
-
-volumes:
-  db_data:
-  media_data:

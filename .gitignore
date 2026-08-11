@@ -15,6 +15,10 @@ venv/
 /staticfiles/
 local_settings.py
 
+# Docker Compose bind mounts (db_data/media_data volumes)
+/db_data/
+/media_data/
+
 # Tailwind build output + standalone CLI binary
 /static/css/output.css
 /tailwindcss.exe

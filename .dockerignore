@@ -5,6 +5,8 @@ __pycache__/
 *.pyc
 db/
 media/
+db_data/
+media_data/
 staticfiles/
 static/css/output.css
 tailwindcss.exe

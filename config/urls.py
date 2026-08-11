@@ -27,5 +27,7 @@ urlpatterns = [
     ),
 ]
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# Served unconditionally (not just in DEBUG): this low-traffic site has no
+# separate nginx/CDN in front of it, so gunicorn serving /media/ directly is
+# the simplest correct option, same reasoning as using WhiteNoise for /static/.
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
