@@ -1,0 +1,10 @@
+{% load static %}
+<section class="page-header relative" style="background-image:url('{% static 'img/bg-topo.jpg' %}');">
+  <div class="absolute inset-0 bg-brand-dark/60"></div>
+  <div class="relative max-w-6xl mx-auto px-4 py-20 text-center">
+    <h1 class="text-3xl md:text-4xl font-bold text-white">{{ title }}</h1>
+    {% if subtitle %}
+      <p class="mt-3 text-brand-light/90 max-w-2xl mx-auto">{{ subtitle }}</p>
+    {% endif %}
+  </div>
+</section>

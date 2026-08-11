@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Área dos corretores — {{ site_name }}{% endblock %}
+
+{% block content %}
+{% include "partials/page_header.html" with title="Área dos corretores" subtitle="Acesso restrito para corretores e imobiliárias associadas visualizarem as tabelas de preços das construtoras." %}
+
+<section class="max-w-md mx-auto px-4 py-16">
+  {% include "portal/partials/_login_form.html" %}
+</section>
+{% endblock %}

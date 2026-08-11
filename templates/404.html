@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Página não encontrada — {{ site_name }}{% endblock %}
+{% block content %}
+<div class="max-w-3xl mx-auto px-4 py-24 text-center">
+  <p class="text-7xl font-bold text-slate-200">404</p>
+  <h1 class="mt-2 text-3xl font-bold text-brand">Página não encontrada</h1>
+  <p class="mt-4 text-slate-600">A página que você procura não existe ou foi movida.</p>
+  <a href="{% url 'pages:home' %}" class="arrow-link inline-flex mt-6 text-accent font-semibold hover:underline">
+    Voltar para a página inicial <span class="arrow">→</span>
+  </a>
+</div>
+{% endblock %}

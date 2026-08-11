@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Contato — {{ site_name }}{% endblock %}
+
+{% block content %}
+{% include "partials/page_header.html" with title="Contato" %}
+
+<section class="max-w-6xl mx-auto px-4 py-16">
+  <div class="grid gap-10 md:grid-cols-2">
+    <div>
+      <div id="contact-form-container">
+        {% include "contact/partials/_contact_form.html" %}
+      </div>
+
+      <div class="mt-8 space-y-1 text-sm text-slate-600">
+        <p><span class="font-semibold text-slate-900">Endereço:</span> {{ site_address }}</p>
+        <p><span class="font-semibold text-slate-900">Telefone:</span> {{ site_phone_display }} (atendimento somente via WhatsApp)</p>
+        <p>
+          <span class="font-semibold text-slate-900">Redes sociais:</span>
+          <a href="{{ site_facebook_url }}" target="_blank" rel="noopener" class="text-brand hover:underline">Facebook</a>
+          ·
+          <a href="{{ site_instagram_url }}" target="_blank" rel="noopener" class="text-brand hover:underline">Instagram</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="rounded-xl overflow-hidden border border-slate-200 min-h-[320px]">
+      <iframe
+        title="Localização da AICITI"
+        src="https://www.google.com/maps?q={{ site_address|urlencode }}&output=embed"
+        class="w-full h-full min-h-[320px]"
+        style="border:0;"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+</section>
+{% endblock %}

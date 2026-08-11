@@ -1,0 +1,47 @@
+<footer class="bg-brand-dark text-slate-300 mt-16">
+  <div class="max-w-6xl mx-auto px-4 py-10 grid gap-8 md:grid-cols-3">
+    <div>
+      <p class="text-white font-bold text-lg">{{ site_name }}</p>
+      <p class="mt-2 text-sm text-slate-400">Associação das Imobiliárias e Corretores de Imóveis de Tramandaí e Imbé.</p>
+    </div>
+
+    <div>
+      <p class="text-white font-semibold mb-2">Navegação</p>
+      <ul class="space-y-1 text-sm">
+        {% for item in nav_items %}
+          {% if item.children %}
+            {% for child in item.children %}
+              {% if child.method == "post" %}
+                <li>
+                  <form method="post" action="{{ child.url }}">
+                    {% csrf_token %}
+                    <button type="submit" class="hover:text-white">{{ child.label }}</button>
+                  </form>
+                </li>
+              {% else %}
+                <li><a href="{{ child.url }}" {% if child.external %}target="_blank" rel="noopener"{% endif %} class="hover:text-white">{{ child.label }}</a></li>
+              {% endif %}
+            {% endfor %}
+          {% else %}
+            <li><a href="{{ item.url }}" class="hover:text-white">{{ item.label }}</a></li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div>
+      <p class="text-white font-semibold mb-2">Contato</p>
+      <ul class="space-y-1 text-sm text-slate-400">
+        <li>{{ site_address }}</li>
+        <li>{{ site_phone_display }} (somente WhatsApp)</li>
+      </ul>
+      <div class="flex gap-4 mt-3">
+        <a href="{{ site_facebook_url }}" target="_blank" rel="noopener" class="hover:text-white text-sm">Facebook</a>
+        <a href="{{ site_instagram_url }}" target="_blank" rel="noopener" class="hover:text-white text-sm">Instagram</a>
+      </div>
+    </div>
+  </div>
+  <div class="border-t border-white/10 py-4 text-center text-xs text-slate-400">
+    &copy; {% now "Y" %} {{ site_name }}. Todos os direitos reservados.
+  </div>
+</footer>

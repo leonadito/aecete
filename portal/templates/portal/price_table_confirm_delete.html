@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Excluir tabela — {{ site_name }}{% endblock %}
+
+{% block content %}
+{% include "partials/page_header.html" with title="Excluir tabela" %}
+
+<section class="max-w-md mx-auto px-4 py-16 text-center">
+  <p class="text-slate-700">Tem certeza que deseja excluir a tabela <strong>{{ object.title }}</strong>?</p>
+  <form method="post" class="mt-6 flex items-center justify-center gap-4">
+    {% csrf_token %}
+    <button type="submit" class="bg-accent text-white font-semibold px-6 py-3 rounded-lg hover:bg-red-600 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2">
+      Excluir
+    </button>
+    <a href="{% url 'portal:builder_dashboard' %}" class="text-slate-500 hover:text-brand text-sm">Cancelar</a>
+  </form>
+</section>
+{% endblock %}

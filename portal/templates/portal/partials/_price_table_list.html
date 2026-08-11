@@ -1,0 +1,29 @@
+<div class="grid gap-6 md:grid-cols-3">
+  {% for price_table in price_tables %}
+    {% include "portal/partials/_price_table_card.html" with show_builder_name=True %}
+  {% empty %}
+    <p class="col-span-full text-center text-slate-500">Nenhuma tabela publicada ainda.</p>
+  {% endfor %}
+</div>
+
+{% if page_obj.has_other_pages %}
+<div class="mt-8 flex items-center justify-center gap-2">
+  {% if page_obj.has_previous %}
+    <button
+      hx-get="{% url 'portal:broker_price_table_list' %}?page={{ page_obj.previous_page_number }}"
+      hx-target="#price-table-list-container" hx-swap="innerHTML"
+      class="px-4 py-2 rounded border border-slate-300 text-sm hover:bg-slate-50 hover:border-brand transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand">
+      Anterior
+    </button>
+  {% endif %}
+  <span class="px-4 py-2 text-sm text-slate-500">Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>
+  {% if page_obj.has_next %}
+    <button
+      hx-get="{% url 'portal:broker_price_table_list' %}?page={{ page_obj.next_page_number }}"
+      hx-target="#price-table-list-container" hx-swap="innerHTML"
+      class="px-4 py-2 rounded border border-slate-300 text-sm hover:bg-slate-50 hover:border-brand transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand">
+      Próxima
+    </button>
+  {% endif %}
+</div>
+{% endif %}

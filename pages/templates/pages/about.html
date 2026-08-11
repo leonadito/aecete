@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Sobre — {{ site_name }}{% endblock %}
+
+{% block content %}
+{% include "partials/page_header.html" with title="Sobre Nós" subtitle="Conheça a história e os integrantes da AICITI" %}
+
+<section class="max-w-4xl mx-auto px-4 py-16 text-center">
+  <span class="kicker">Nossa história</span>
+  <p class="mt-4 text-slate-600 leading-relaxed">
+    A AICITI (Associação das Imobiliárias e Corretores de Imóveis de Tramandaí e Imbé) representa o
+    setor imobiliário de Tramandaí e Imbé, no litoral norte do Rio Grande do Sul. Fundada em 2001, a
+    entidade se dedica a unir as imobiliárias e corretores de imóveis da região, promovendo ética,
+    transparência e profissionalismo no mercado imobiliário local. A associação oferece convênios,
+    benefícios exclusivos, capacitações e eventos para seus associados, além de promover qualificação
+    contínua através de treinamentos e palestras sobre tendências do setor.
+  </p>
+</section>
+
+<section class="bg-slate-50 py-16">
+  <div class="max-w-5xl mx-auto px-4">
+    <div class="text-center">
+      <span class="kicker">Liderança</span>
+      <h2 class="mt-2 text-2xl font-bold text-slate-900">Diretoria</h2>
+    </div>
+    <div class="mt-8 grid gap-6 sm:grid-cols-2 md:grid-cols-3">
+      {% for member in diretoria %}
+        {% include "pages/partials/_board_card.html" %}
+      {% endfor %}
+    </div>
+
+    {% if titulares %}
+      <h3 class="mt-16 text-xl font-bold text-slate-900 text-center">Membros titulares</h3>
+      <div class="mt-8 grid gap-6 sm:grid-cols-2 md:grid-cols-3">
+        {% for member in titulares %}
+          {% include "pages/partials/_board_card.html" %}
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% if suplentes %}
+      <h3 class="mt-16 text-xl font-bold text-slate-900 text-center">Membros suplentes</h3>
+      <div class="mt-8 grid gap-6 sm:grid-cols-2 md:grid-cols-3">
+        {% for member in suplentes %}
+          {% include "pages/partials/_board_card.html" %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

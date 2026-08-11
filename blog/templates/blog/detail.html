@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}{{ post.title }} — {{ site_name }}{% endblock %}
+{% block meta_description %}{{ post.content|truncatewords:25 }}{% endblock %}
+
+{% block content %}
+<article class="max-w-3xl mx-auto px-4 py-16">
+  {% if post.cover_image %}
+    <img src="{{ post.cover_image.url }}" alt="{{ post.title }}" class="w-full h-64 object-cover rounded-xl mb-8">
+  {% endif %}
+  {% if post.published_at %}
+    <p class="text-sm text-slate-400">{{ post.published_at|date:"d/m/Y" }}</p>
+  {% endif %}
+  <h1 class="mt-1 text-3xl font-bold text-slate-900">{{ post.title }}</h1>
+  <div class="mt-6 prose max-w-none text-slate-700">
+    {{ post.content|linebreaks }}
+  </div>
+  <a href="{% url 'blog:post_list' %}" class="inline-block mt-10 text-brand font-medium hover:underline">&larr; Voltar ao blog</a>
+</article>
+{% endblock %}

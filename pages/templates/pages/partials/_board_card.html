@@ -1,0 +1,14 @@
+{% load static %}
+<div class="card-hover bg-white rounded-xl border border-slate-200 p-6 text-center">
+  {% if member.photo %}
+    <img src="{{ member.photo.url }}" alt="{{ member.name }}" class="w-20 h-20 rounded-full object-cover mx-auto ring-4 ring-brand-light">
+  {% else %}
+    <div class="w-20 h-20 rounded-full mx-auto bg-brand-light flex items-center justify-center text-brand font-semibold text-xl">
+      {{ member.name|slice:":1" }}
+    </div>
+  {% endif %}
+  <p class="mt-3 font-semibold text-slate-900">{{ member.name }}</p>
+  {% if member.role %}
+    <p class="text-sm text-brand">{{ member.role }}</p>
+  {% endif %}
+</div>

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Parceiros — {{ site_name }}{% endblock %}
+
+{% block content %}
+{% include "partials/page_header.html" with title="Parceiros" subtitle="As empresas parceiras da AICITI fazem parte de um ecossistema que fortalece o mercado imobiliário de Tramandaí e Imbé." %}
+
+<section class="max-w-6xl mx-auto px-4 py-16">
+  <div class="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
+    {% for partner in partners %}
+      {% include "partners/partials/_partner_card.html" %}
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

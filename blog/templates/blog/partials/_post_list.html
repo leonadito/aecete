@@ -1,0 +1,29 @@
+<div class="grid gap-6 md:grid-cols-3">
+  {% for post in page_obj %}
+    {% include "blog/partials/_post_card.html" %}
+  {% empty %}
+    <p class="col-span-full text-center text-slate-500">Nenhum post publicado ainda.</p>
+  {% endfor %}
+</div>
+
+{% if page_obj.has_other_pages %}
+<div class="mt-8 flex items-center justify-center gap-2">
+  {% if page_obj.has_previous %}
+    <button
+      hx-get="{% url 'blog:post_list' %}?page={{ page_obj.previous_page_number }}"
+      hx-target="#post-list-container" hx-swap="innerHTML"
+      class="px-4 py-2 rounded border border-slate-300 text-sm hover:bg-slate-50 hover:border-brand transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand">
+      Anterior
+    </button>
+  {% endif %}
+  <span class="px-4 py-2 text-sm text-slate-500">Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>
+  {% if page_obj.has_next %}
+    <button
+      hx-get="{% url 'blog:post_list' %}?page={{ page_obj.next_page_number }}"
+      hx-target="#post-list-container" hx-swap="innerHTML"
+      class="px-4 py-2 rounded border border-slate-300 text-sm hover:bg-slate-50 hover:border-brand transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand">
+      Próxima
+    </button>
+  {% endif %}
+</div>
+{% endif %}

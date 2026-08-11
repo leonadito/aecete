@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% load static pages_tags %}
+
+{% block content %}
+
+<!-- Hero -->
+<section class="relative text-white bg-cover bg-bottom overflow-hidden" style="background-image:url('{% static 'img/hero.jpg' %}');">
+  <div class="absolute inset-0 hero-overlay"></div>
+  <div class="relative max-w-6xl mx-auto px-4 py-28 text-center">
+    <span class="animate-fade-in-up inline-block bg-white/10 backdrop-blur-sm border border-white/20 text-white/90 text-xs font-semibold tracking-wide uppercase px-4 py-1.5 rounded-full">
+      Desde 2001 fortalecendo o mercado imobiliário
+    </span>
+    <h1 class="animate-fade-in-up-delay-1 mt-5 text-4xl md:text-5xl font-bold drop-shadow">AICITI TDAÍ</h1>
+    <p class="animate-fade-in-up-delay-1 mt-4 text-lg text-white/90 max-w-2xl mx-auto drop-shadow">
+      Associação das Imobiliárias e Corretores de Imóveis de Tramandaí e Imbé.
+    </p>
+    <a href="{% url 'contact:page' %}" class="animate-fade-in-up-delay-2 inline-block mt-8 bg-accent text-white font-semibold px-6 py-3 rounded-lg hover:bg-red-600 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark">
+      Associe-se
+    </a>
+  </div>
+</section>
+
+<!-- Sobre nós -->
+<section class="max-w-4xl mx-auto px-4 py-16 text-center">
+  <span class="kicker">Quem somos</span>
+  <h2 class="mt-2 text-2xl font-bold text-slate-900">Sobre nós</h2>
+  <p class="mt-4 text-slate-600">
+    A AICITI representa o setor imobiliário de Tramandaí e Imbé, no litoral norte do Rio Grande do Sul.
+    Fundada em 2001, a entidade une imobiliárias e corretores da região, promovendo ética,
+    transparência e profissionalismo no mercado imobiliário local.
+  </p>
+  <a href="{% url 'pages:about' %}" class="arrow-link inline-flex mt-4 text-brand font-medium hover:underline">
+    Saiba mais <span class="arrow">→</span>
+  </a>
+</section>
+
+<!-- Imobiliárias associadas -->
+{% if member_agencies %}
+<section class="bg-slate-50 py-16">
+  <div class="max-w-6xl mx-auto px-4 text-center">
+    <span class="kicker">Nossa rede</span>
+    <h2 class="mt-2 text-2xl font-bold text-slate-900">Imobiliárias associadas</h2>
+    <div class="mt-8 flex flex-wrap items-center justify-center gap-8">
+      {% for agency in member_agencies %}
+        {% include "partners/partials/_partner_logo.html" with partner=agency %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- Benefícios para associados -->
+<section class="max-w-6xl mx-auto px-4 py-16 text-center">
+  <span class="kicker">Benefícios</span>
+  <h2 class="mt-2 text-2xl font-bold text-slate-900">Benefícios para associados</h2>
+  <div class="mt-8 grid gap-8 md:grid-cols-3 text-left">
+    {% for benefit in benefits %}
+      <div class="card-hover rounded-xl border border-slate-200 overflow-hidden text-center">
+        {% if benefit.image %}
+          <img src="{{ benefit.image.url }}" alt="{{ benefit.title }}" class="w-full h-40 object-cover">
+        {% else %}
+          <div class="h-40 flex items-center justify-center bg-brand-light text-brand">
+            {% render_icon benefit.icon "w-12 h-12" %}
+          </div>
+        {% endif %}
+        <div class="p-5">
+          <h3 class="font-semibold text-slate-900">{{ benefit.title }}</h3>
+          <p class="mt-2 text-sm text-slate-600">{{ benefit.description }}</p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  <a href="{% url 'pages:benefits' %}" class="arrow-link inline-flex mt-8 text-brand font-medium hover:underline">
+    Ver todos os benefícios <span class="arrow">→</span>
+  </a>
+</section>
+
+<!-- Gestores -->
+{% if board_members %}
+<section class="bg-slate-50 py-16">
+  <div class="max-w-6xl mx-auto px-4 text-center">
+    <span class="kicker">Liderança</span>
+    <h2 class="mt-2 text-2xl font-bold text-slate-900">Gestores</h2>
+    <div class="mt-8 grid gap-6 sm:grid-cols-2 md:grid-cols-3 text-left">
+      {% for member in board_members %}
+        {% include "pages/partials/_board_card.html" %}
+      {% endfor %}
+    </div>
+    <a href="{% url 'pages:about' %}" class="arrow-link inline-flex mt-8 text-brand font-medium hover:underline">
+      Conheça toda a diretoria <span class="arrow">→</span>
+    </a>
+  </div>
+</section>
+{% endif %}
+
+<!-- Blog -->
+{% if posts %}
+<section class="max-w-6xl mx-auto px-4 py-16 text-center">
+  <span class="kicker">Blog</span>
+  <h2 class="mt-2 text-2xl font-bold text-slate-900">Últimas do blog</h2>
+  <div class="mt-8 grid gap-6 md:grid-cols-3 text-left">
+    {% for post in posts %}
+      {% include "blog/partials/_post_card.html" %}
+    {% endfor %}
+  </div>
+  <a href="{% url 'blog:post_list' %}" class="arrow-link inline-flex mt-8 text-brand font-medium hover:underline">
+    Ver todos os posts <span class="arrow">→</span>
+  </a>
+</section>
+{% endif %}
+
+{% endblock %}

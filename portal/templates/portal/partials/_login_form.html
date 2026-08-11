@@ -1,0 +1,23 @@
+{% load static %}
+<form method="post" class="space-y-4">
+  {% csrf_token %}
+  <input type="hidden" name="next" value="{{ next }}">
+
+  {% if form.non_field_errors %}
+    <p class="text-sm text-red-600">{{ form.non_field_errors|join:", " }}</p>
+  {% endif %}
+
+  {% for field in form %}
+    <div>
+      <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-slate-700">{{ field.label }}</label>
+      <div class="mt-1">{{ field }}</div>
+      {% if field.errors %}
+        <p class="mt-1 text-sm text-red-600">{{ field.errors|join:", " }}</p>
+      {% endif %}
+    </div>
+  {% endfor %}
+
+  <button type="submit" class="w-full bg-brand text-white font-semibold rounded-lg px-6 py-3 hover:bg-brand-dark transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2">
+    Entrar
+  </button>
+</form>

@@ -1,0 +1,55 @@
+/* Custom tabular layout (portal/templates/portal/edit_inline/pricetable_tabular.html):
+   groups the model's fields into two columns — content (title/image/drive
+   link) and status (active/created) — instead of Django's default one
+   column per field, so a builder's price tables are easier to scan. */
+
+.inline-group .tabular td,
+.inline-group .tabular th {
+  vertical-align: top !important;
+}
+
+.inline-group .tabular td.form-row-group {
+  min-width: 240px;
+}
+
+.inline-group .tabular .form-row-group-field {
+  margin-bottom: 10px;
+}
+.inline-group .tabular .form-row-group-field:last-child {
+  margin-bottom: 0;
+}
+.inline-group .tabular .form-row-group-field > label {
+  display: block;
+  font-size: 11px;
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+
+.inline-group .tabular .form-row-group-field.field-is_active {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.inline-group .tabular .form-row-group-field.field-is_active > label {
+  display: inline;
+  margin-bottom: 0;
+}
+
+.inline-group .tabular .form-row-group-field.field-created_at .readonly {
+  white-space: nowrap;
+}
+
+.inline-group .tabular .form-row-group-field.field-description textarea {
+  height: 3.5em;
+  width: 100%;
+  max-width: 320px;
+}
+
+.inline-group .tabular .form-row-group-field.field-image p.file-upload a {
+  display: inline-block;
+  max-width: 220px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  vertical-align: bottom;
+}

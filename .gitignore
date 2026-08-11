@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.Python
+
+# Virtualenv
+venv/
+.venv/
+
+# Django
+*.sqlite3
+/db/
+/media/
+/staticfiles/
+local_settings.py
+
+# Tailwind build output + standalone CLI binary
+/static/css/output.css
+/tailwindcss.exe
+/tailwindcss
+
+# Env vars
+.env
+
+# Editor/OS
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store

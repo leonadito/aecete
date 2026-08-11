@@ -1,0 +1,7 @@
+{% if partner.logo %}
+  <div class="bg-white rounded-lg shadow-sm border border-slate-200 px-6 py-4 flex items-center justify-center h-24 w-40">
+    <img src="{{ partner.logo.url }}" alt="{{ partner.name }}" class="max-h-16 max-w-full object-contain grayscale hover:grayscale-0 transition">
+  </div>
+{% else %}
+  <span class="font-medium text-slate-500">{{ partner.name }}</span>
+{% endif %}

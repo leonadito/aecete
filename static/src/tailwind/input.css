@@ -1,0 +1,134 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@source "../../../templates";
+@source "../../../*/templates";
+
+@theme {
+  --color-brand: #262d90;
+  --color-brand-dark: #1b2170;
+  --color-brand-light: #eef0fb;
+  --color-accent: #ff141f;
+  --font-heading: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../fonts/montserrat-600-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../fonts/montserrat-600-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../fonts/montserrat-700-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../fonts/montserrat-700-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+  }
+}
+
+[x-cloak] {
+  display: none !important;
+}
+
+.page-header {
+  background-color: var(--color-brand-dark);
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-overlay {
+  background: linear-gradient(
+    to top,
+    rgba(27, 33, 112, 0) 0%,
+    rgba(27, 33, 112, 0.05) 18%,
+    rgba(27, 33, 112, 0.65) 45%,
+    rgba(27, 33, 112, 0.55) 75%,
+    rgba(27, 33, 112, 0.35) 100%
+  );
+}
+
+.kicker {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px -8px rgb(0 0 0 / 0.15);
+}
+
+.arrow-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+.arrow-link .arrow {
+  transition: transform 0.2s ease;
+  display: inline-block;
+}
+.arrow-link:hover .arrow {
+  transform: translateX(4px);
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out both;
+}
+.animate-fade-in-up-delay-1 {
+  animation: fade-in-up 0.6s ease-out 0.1s both;
+}
+.animate-fade-in-up-delay-2 {
+  animation: fade-in-up 0.6s ease-out 0.2s both;
+}
+
+.htmx-indicator {
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+.htmx-request.htmx-indicator,
+.htmx-request .htmx-indicator {
+  opacity: 1;
+}

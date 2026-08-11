@@ -1,0 +1,16 @@
+<div class="border border-slate-200 rounded-lg hover:border-brand/40 transition-colors" x-data="{ open: false }">
+  <button
+    type="button"
+    class="w-full flex items-center justify-between gap-4 px-4 py-3 text-left font-medium text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand rounded-lg"
+    @click="open = !open"
+    :aria-expanded="open"
+  >
+    <span :class="open ? 'text-brand' : ''">{{ item.question }}</span>
+    <svg class="w-5 h-5 flex-shrink-0 transition-transform" :class="open ? 'rotate-180 text-brand' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+    </svg>
+  </button>
+  <div x-show="open" x-cloak class="px-4 pb-4 text-slate-600">
+    {{ item.answer }}
+  </div>
+</div>
