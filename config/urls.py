@@ -1,9 +1,9 @@
 from django.conf import settings
-from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.sitemaps.views import sitemap
 from django.urls import include, path
 from django.views.generic import TemplateView
+from django.views.static import serve as serve_static
 
 from pages.sitemaps import BlogPostSitemap, StaticViewSitemap
 
@@ -27,7 +27,15 @@ urlpatterns = [
     ),
 ]
 
-# Served unconditionally (not just in DEBUG): this low-traffic site has no
-# separate nginx/CDN in front of it, so gunicorn serving /media/ directly is
-# the simplest correct option, same reasoning as using WhiteNoise for /static/.
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# django.conf.urls.static.static() silently returns [] whenever DEBUG is
+# False (a check baked into the helper itself, not just typical call-site
+# usage) so it can't serve /media/ in production. This site has no separate
+# nginx/CDN in front of it, so wire django.views.static.serve directly
+# instead — same trade-off already made for /static/ via WhiteNoise.
+urlpatterns += [
+    path(
+        f"{settings.MEDIA_URL.lstrip('/')}<path:path>",
+        serve_static,
+        {"document_root": settings.MEDIA_ROOT},
+    ),
+]
